@@ -27,5 +27,6 @@ Route::group(['middleware'=>['auth:api']],function (){
     Route::get('book/{book}',[BookController::class,'show']);
     Route::patch('book/{book}',[BookController::class,'update']);
     Route::delete('book/{book}',[BookController::class,'delete']);
+    Route::get("author-books", [BookController::class, "authorBook"]);
 
 });
