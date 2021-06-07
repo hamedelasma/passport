@@ -12,4 +12,7 @@ class Author extends Model
     protected $hidden =[
         'created_at','updated_at'
     ];
+    protected $fillable=[
+        "name", "email", "password", "phone_no"
+    ];
 }
