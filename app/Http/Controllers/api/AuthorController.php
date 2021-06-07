@@ -35,7 +35,29 @@ class AuthorController extends Controller
         ]);
     }
     public function login(Request $request){
+        // validation
+        $login_data = $request->validate([
+            "email" => "required",
+            "password" => "required"
+        ]);
+        // validate author data
+        if(!auth()->attempt($login_data)){
 
+            return response()->json([
+                "status" => false,
+                "message" => "Invalid Credentials"
+            ]);
+        }
+
+        // token
+        $token = auth()->user()->createToken("auth_token")->accessToken;
+
+        // send response
+        return response()->json([
+            "status" => true,
+            "message" => "Author Logged in successfully",
+            "access_token" => $token
+        ]);
     }
     public function profile(){
 
